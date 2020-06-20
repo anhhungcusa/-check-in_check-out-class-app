@@ -6,6 +6,7 @@ function App() {
   useEffect(() => {
     document.title = 'QR'
   }, [])
+  
   return (
     <div className="App">
       <DataProvider>
