@@ -9,4 +9,4 @@ function FullScreenLayout({children}) {
     )
 }
 
-export {FullScreenLayout}
+export default FullScreenLayout
