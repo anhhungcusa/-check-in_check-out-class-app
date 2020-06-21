@@ -1,0 +1,44 @@
+.login-page {
+    flex-direction: column;
+}
+.login-page .logo {
+    margin-top: 20px;
+}
+.login-page .logo > * {
+    font-size: 150px;
+    border: 5px solid;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.login-page .card {
+    border: 1px solid ;
+    width: 350px;
+    border-radius: 3px;
+    margin: 0 0 10px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.card .title {
+    color: #000000a6;
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+
+
+
+.login-form {
+    padding: 20px 40px 10px;
+}
+
+.login-form .form-button {
+    border-radius: 4px;
+    height: 35px;
+    width: 100%;
+    font-weight: 600;
+}
+
+.login-page .card:last-child {
+    background: white;
+}

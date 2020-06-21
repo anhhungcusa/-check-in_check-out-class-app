@@ -1,0 +1,109 @@
+{
+    "source": "mockoon:1.8.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "name": "qr_code-api",
+                "endpointPrefix": "api/v1",
+                "latency": 0,
+                "port": 8080,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "post",
+                        "endpoint": "auth/login",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"message\": \"username or password incorrect\"\n}",
+                                "latency": 0,
+                                "statusCode": "400",
+                                "headers": [],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "label": ""
+                            },
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"message\": \"Login Success!\",\n  \"user\": {\n      \"_id\": \"5ee3c0026fdc094e6c98fd62\",\n      \"fullname\": \"test\",\n      \"createAt\": \"2020-06-12T17:48:50.316+00:00\",\n      \"email\": \"test@gmail.com\",\n      \"roleId\": \"5ee3c0026fdc094e6c98fd63\"\n  },\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWUzYzAwMjZmZGMwOTRlNmM5OGZkNjIiLCJmdWxsbmFtZSI6InRlc3QiLCJyb2xlSWQiOiI1ZWUzYzAwMjZmZGMwOTRlNmM5OGZkNjMifQ.ZGvuOfiSR118DbBlVaoIc70RzP2XuTaJxFWifCEzpbg\"\n}",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "",
+                                "headers": [],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "body",
+                                        "modifier": "username",
+                                        "value": "test",
+                                        "isRegex": false
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "password",
+                                        "value": "test",
+                                        "isRegex": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "post",
+                        "endpoint": "",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\"hello\": \"hello\"}",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "label": ""
+                            }
+                        ],
+                        "enabled": true
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "lastMigration": 10,
+                "proxyReqHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "proxyResHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    ]
+}
