@@ -1,6 +1,6 @@
-import { axios } from "../configs/axios"
 import { Exception } from "../utils"
 import {messagedStatus} from '../constants/index'
+import { axios } from "../configs"
 
 const route = '/auth' 
 const loginPath = '/login'

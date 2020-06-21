@@ -5,7 +5,7 @@ function SpinEffect() {
 
     return (
         <div className={`inherit d-flex-center`}>
-            <Spin size="large" />
+            <Spin size="large"  />
         </div>
     )
 }
