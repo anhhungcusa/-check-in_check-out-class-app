@@ -44,9 +44,17 @@
 	width: inherit;
 	height: inherit;
 }
+
+
+/* color */
+.primary-color {
+	color: #ef713d
+}
+
 /* media */
 @media only screen and (max-width: 900px) {
 	.container {
 		width: 100%;
 	}
 }
+

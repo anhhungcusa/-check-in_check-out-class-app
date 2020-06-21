@@ -16,7 +16,7 @@ const login = async (username, password) => {
         const {user, token} = res.data
         return {user, token, message: 'login success', status: messagedStatus.success}
     } catch (error) {
-        const {message = 'login failed'} = error
+        const message = error.response?.data?.message || error.message || 'login failed'
         throw new Exception(message, messagedStatus.error)
     }
 }

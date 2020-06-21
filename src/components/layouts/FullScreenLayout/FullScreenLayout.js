@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './FullScreenLayout.css'
 function FullScreenLayout({children}) {
 
     return (

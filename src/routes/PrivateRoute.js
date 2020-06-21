@@ -1,16 +1,13 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom';
-import useStore from '../hooks/useStore';
-import useRouter from '../hooks/useRouter';
-import { CookieService, AuthService } from '../services';
+import { CookieService } from '../services';
 import { env } from '../configs/globals';
-import { FullScreenLayout } from '../components/layouts/FullScreenLayout';
-import { SpinEffect } from '../components/loading-effects/SpinEffect';
-import { MainLayout } from '../components/layouts/MainLayout'
+import { useStore, useRouter } from '../hooks';
+import { MainLayout, FullScreenLayout, SpinEffect } from '../components';
 
 function PrivateRoute({
     layout: Layout = MainLayout,
-    redirectPath = AuthService.loginPath, 
+    redirectPath = '/login', 
     path, children,...rest }) {
         
     const store = useStore();
@@ -38,4 +35,4 @@ function PrivateRoute({
     return <Redirect to={{ pathname: redirectPath, state: { from } }} />;
 }
 
-export { PrivateRoute }
+export default PrivateRoute 

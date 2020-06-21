@@ -10,4 +10,4 @@ function SpinEffect() {
     )
 }
 
-export {SpinEffect}
+export default SpinEffect

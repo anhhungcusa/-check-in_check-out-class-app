@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom';
-import { MainLayout } from '../components/layouts/MainLayout'
+import { MainLayout } from '../components';
 
 function PublicRoute({
     layout: Layout = MainLayout,
@@ -15,4 +15,4 @@ function PublicRoute({
     )
 }
 
-export { PublicRoute }
+export default PublicRoute 
