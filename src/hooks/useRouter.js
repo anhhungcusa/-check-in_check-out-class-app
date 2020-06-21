@@ -3,7 +3,7 @@ import { useParams, useLocation, useHistory, useRouteMatch } from 'react-router-
 import queryString from 'query-string';
 
 // Hook
-export function useRouter() {
+function useRouter() {
 	const params = useParams();
 	const location = useLocation();
 	const history = useHistory();
@@ -28,3 +28,5 @@ export function useRouter() {
 		[ params, match, location, history ]
 	);
 }
+
+export default useRouter

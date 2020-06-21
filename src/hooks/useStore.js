@@ -7,4 +7,4 @@ function useStore() {
     return useMemo(() => state, [state])
 }
 
-export {useStore}
+export default useStore
