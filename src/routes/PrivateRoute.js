@@ -1,18 +1,25 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom';
 import { CookieService } from '../services';
-import { env } from '../configs/globals';
+import { globals } from '../configs';
 import { useStore, useRouter } from '../hooks';
 import { MainLayout, FullScreenLayout, SpinEffect } from '../components';
 
 function PrivateRoute({
     layout: Layout = MainLayout,
-    redirectPath = '/login', 
-    path, children,...rest }) {
-        
+    redirectPath = '/login',
+    path, children, ...rest }) {
+
     const store = useStore();
     const router = useRouter();
-    const isExistedToken = CookieService.getCookie(env.COOKIE_KEY);
+    const isExistedToken = CookieService.getCookie(globals.env.COOKIE_KEY);
+    if (isExistedToken && store.auth.initLoading === false) {
+        return (
+            <FullScreenLayout>
+                <SpinEffect />
+            </FullScreenLayout>
+        )
+    }
     if (store.auth.isAuthorized) {
         return (
             <Route path={path} {...rest}>
@@ -21,13 +28,6 @@ function PrivateRoute({
                 </Layout>
             </Route>
         );
-    }
-    if (isExistedToken && store.auth.initLoading === true) {
-        return (
-            <FullScreenLayout>
-                <SpinEffect />
-            </FullScreenLayout>
-        )
     }
 
     const from = router.pathname

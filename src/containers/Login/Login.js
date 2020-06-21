@@ -3,9 +3,10 @@ import './Login.css'
 import { Form, Input, Button, message } from 'antd'
 import {useRouter, useDispatch} from '../../hooks';
 import { Link } from 'react-router-dom';
-import { AuthService } from '../../services';
+import { AuthService, CookieService } from '../../services';
 import { actions } from '../../store';
 import {UserOutlined} from '@ant-design/icons'
+import { globals } from '../../configs';
 function Login() {
     const router = useRouter();
     const dispatch = useDispatch()
@@ -29,7 +30,8 @@ function Login() {
             .then(res => {
                 const { from = '/' } = router.state || {};
                 const {user, token} = res
-                dispatch(actions.setAuth(token))
+				dispatch(actions.setAuth(token))
+				CookieService.setCookie(globals.env.COOKIE_KEY, token)
                 dispatch(actions.setUser(user))
                 router.replace(from)
             }).catch(error => {
