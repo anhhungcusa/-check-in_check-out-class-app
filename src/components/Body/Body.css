@@ -1,0 +1,72 @@
+.body {
+  height: 92vh;
+  background-color: rgba(var(--b3f, 250, 250, 250), 1);
+}
+
+.body .pt-3 {
+  padding-top: 5%;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.create-btn button {
+    cursor: pointer;
+    height: 30px;
+    border: 1px solid rgba(var(--b6a,219,219,219),1);
+    border-radius: 5px;
+    color: white;
+    background-color: #007bff;
+    font-weight: 600;
+    outline: none;
+}
+.create-btn button:hover {
+    background-color: white;
+    color: black;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.d-flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+.pointer {
+  cursor: pointer;
+}
+.full {
+  width: 100%;
+  height: 100%;
+}
+/* media */
+@media only screen and (max-width: 900px) {
+  .container {
+    width: 100%;
+  }
+}
