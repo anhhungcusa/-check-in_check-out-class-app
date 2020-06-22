@@ -21,9 +21,11 @@ function DataProvider({children}) {
     const [state, dispatch] = useReducer(reducer, initState) 
     useEffect(() => {
         const token = CookieService.getCookie(globals.env.COOKIE_KEY);
-        const user = decode(token)
-        dispatch(actions.setAuth(token))
-        dispatch(actions.setUser(user))
+        if(token) {
+            const user = decode(token)
+            dispatch(actions.setAuth(token))
+            dispatch(actions.setUser(user))
+        }
     }, [])
     return(
         <DataContext.Provider 
@@ -36,4 +38,4 @@ function DataProvider({children}) {
     )
 }
 
-export {DataProvider, DataContext}
+export {DataProvider, DataContext, initState}

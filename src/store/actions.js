@@ -9,7 +9,10 @@ const setAuth = token => {
 }
 const setUser = user => ({type: types.SET_USER, payload: {user}})
 
+const resetAuth = () => ({type: types.RESET_AUTH})
+
 export default {
     setAuth,
-    setUser    
+    setUser,
+    resetAuth
 }
