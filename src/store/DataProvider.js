@@ -14,7 +14,10 @@ const initState = {
         isAuthorized: false,
         initLoading: false
     },
-    user: null
+    user: null,
+    users: null,
+    rooms: null,
+    sessions: null
 }
 
 function DataProvider({children}) {
