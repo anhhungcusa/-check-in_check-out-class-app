@@ -1,4 +1,5 @@
 import { types } from "."
+import { initState } from "./DataProvider"
 
 function reducer (state, {type, payload}) {
     switch (type) {
@@ -9,6 +10,10 @@ function reducer (state, {type, payload}) {
         case types.SET_USER: {
             const {user} = payload
             return {...state, user}
+        }
+        case types.RESET_AUTH: {
+            const {auth, user} = initState
+            return {...state, auth, user}
         }
         default:
             console.error(`Unhandled action type: ${type}`)

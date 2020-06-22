@@ -4,8 +4,8 @@ import './assets/css/utilities.css'
 import 'antd/dist/antd.css';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { PublicRoute, PrivateRoute } from './routes'
-import { FullScreenLayout } from './components';
-import { LoginPage } from './containers';
+import { FullScreenLayout, MainLayout } from './components';
+import { LoginPage, HomePage } from './containers';
 function App() {
 
   useEffect(() => {
@@ -20,8 +20,8 @@ function App() {
             <PublicRoute path="/login" layout={FullScreenLayout}>
               <LoginPage />
             </PublicRoute>
-            <PrivateRoute path="/private" layout={FullScreenLayout}>
-              private
+            <PrivateRoute path="/" layout={MainLayout}>
+              <HomePage />
             </PrivateRoute>
             <PublicRoute layout={FullScreenLayout}>
               page not found

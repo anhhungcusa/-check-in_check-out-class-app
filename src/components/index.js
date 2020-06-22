@@ -1,3 +1,5 @@
 export {default as FullScreenLayout} from './layouts/FullScreenLayout/FullScreenLayout'
 export {default as MainLayout} from './layouts/MainLayout/MainLayout'
 export {default as SpinEffect} from './loading-effects/SpinEffect'
+export {default as HeaderV2} from './Header-v2/Header'
+export {default as NavBar} from './NavBar/NavBar'
