@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { PublicRoute, PrivateRoute } from './routes'
 import { FullScreenLayout } from './components';
-import { LoginPage } from './containers';
+import { LoginPage, HomePage } from './containers';
 function App() {
 
   useEffect(() => {
@@ -22,6 +22,9 @@ function App() {
             </PublicRoute>
             <PrivateRoute path="/private" layout={FullScreenLayout}>
               private
+            </PrivateRoute>
+            <PrivateRoute path="/" layout={FullScreenLayout}>
+              <HomePage/>
             </PrivateRoute>
             <PublicRoute layout={FullScreenLayout}>
               page not found

@@ -14,16 +14,21 @@ const initState = {
         isAuthorized: false,
         initLoading: false
     },
-    user: null
+    user: null,
+    users: null,
+    rooms: null,
+    sessions: null
 }
 
 function DataProvider({children}) {
     const [state, dispatch] = useReducer(reducer, initState) 
     useEffect(() => {
         const token = CookieService.getCookie(globals.env.COOKIE_KEY);
-        const user = decode(token)
-        dispatch(actions.setAuth(token))
-        dispatch(actions.setUser(user))
+        if(token) {
+            const user = decode(token)
+            dispatch(actions.setAuth(token))
+            dispatch(actions.setUser(user))
+        }
     }, [])
     return(
         <DataContext.Provider 

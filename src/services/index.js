@@ -1,3 +1,5 @@
 export {default as AuthService} from './auth'
 export {default as CookieService} from './cookie'
-
+export {default as UserService} from './user'
+export {default as SessionService} from './session'
+export {default as RoomService} from './room'
