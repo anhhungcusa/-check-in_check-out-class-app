@@ -30,15 +30,11 @@ function BodySessionPage() {
   const [isOpen, setIsOpen] = useState(false);
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
-  // get user name by id
   const getUserNameById = (id) => {
-    // User is data User get from DataProvider
     const result = users.find((item) => item._id === id);
     if (!result) return "RoBot";
     return result.fullname;
   };
-
-  // get room name by id
   const getRoomNameById = (id) => {
     const result = rooms && rooms.find((item) => item._id === id);
     if (!result) return "RoBot";
