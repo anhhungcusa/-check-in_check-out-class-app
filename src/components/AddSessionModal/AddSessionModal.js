@@ -17,7 +17,7 @@ const tailLayout = {
 
 function AddSessionModal({ close, isOpen }) {
   const dispatch = useDispatch();
-  const { users, rooms } = useStore();
+  const { user, rooms } = useStore();
   useEffect(() => {
     UserService.getUser().then((doc) => {
       dispatch(actions.setUsers(doc.users));
@@ -30,6 +30,7 @@ function AddSessionModal({ close, isOpen }) {
   }, [dispatch]);
 
   const onFinish = (values) => {
+    values.hostId = user._id;
     SessionService.createSession(values).then((doc) => {
       dispatch(actions.addSession(doc.session));
       close();
@@ -75,21 +76,6 @@ function AddSessionModal({ close, isOpen }) {
           rules={[{ required: true, message: "Please input your name!" }]}
         >
           <Input />
-        </Form.Item>
-
-        <Form.Item
-          label="Host"
-          name="hostId"
-          rules={[{ required: true, message: "Please select host!" }]}
-        >
-          <Select placeholder="Select Host" style={{ width: 120 }}>
-            {users &&
-              users.map((item, index) => (
-                <Option key={index} value={item._id}>
-                  {item.fullname}
-                </Option>
-              ))}
-          </Select>
         </Form.Item>
 
         <Form.Item

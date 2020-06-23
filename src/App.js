@@ -23,9 +23,9 @@ function App() {
             <PrivateRoute path="/" layout={MainLayout}>
               <HomePage />
             </PrivateRoute>
-            <PrivateRoute path="/" layout={FullScreenLayout}>
+            {/* <PrivateRoute path="/" layout={FullScreenLayout}>
               <HomePage/>
-            </PrivateRoute>
+            </PrivateRoute> */}
             <PublicRoute layout={FullScreenLayout}>
               page not found
             </PublicRoute>

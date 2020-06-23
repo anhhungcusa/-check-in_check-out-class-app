@@ -32,8 +32,12 @@ function reducer(state, { type, payload }) {
       if (!sessions) {
         sessions = session;
       } else {
-        sessions.push(session);
+        sessions.push(session[0]);
       }
+      return { ...state, sessions };
+    }
+    case types.SET_SESSIONS: {
+      const { sessions } = payload;
       return { ...state, sessions };
     }
     default:

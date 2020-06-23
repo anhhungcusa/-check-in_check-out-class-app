@@ -1,13 +1,13 @@
 import React from "react";
 import "./HomePage.css";
 import Header from "../../components/Header/Header";
-import Body from "../../components/Body/Body";
+import BodySessionPage from "../../components/BodySessionPage/BodySessionPage";
 
 function HomePage() {
   return (
     <div>
-      <Header />
-      <Body />
+      {/* <Header /> */}
+      <BodySessionPage />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { axios } from "../configs";
 
 const route = "/";
 const sessionPath = "sessions";
-const createSession = async ({startAt, endAt, name, hostId, roomId}) => {
+const createSession = async ({ startAt, endAt, name, hostId, roomId }) => {
   try {
     const res = await axios({
       method: "post",
@@ -26,4 +26,19 @@ const createSession = async ({startAt, endAt, name, hostId, roomId}) => {
   }
 };
 
-export default { createSession };
+const getSessions = async () => {
+  try {
+    const res = await axios({
+      method: "get",
+      url: route + sessionPath,
+    });
+    const { sessions, message } = res.data;
+    return { sessions, message, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "Get Sessions Failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+};
+
+export default { createSession, getSessions };
