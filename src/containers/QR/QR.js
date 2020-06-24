@@ -8,7 +8,8 @@ import { Button, Space } from 'antd'
 import ObjectId from 'bson-objectid'
 import QRCode from 'qrcode.react'
 import { useMemo } from 'react'
-
+import { ArrowLeftOutlined } from '@ant-design/icons'
+import './QR.css'
 function QR() {
     const {state, params, history} = useRouter()
     const [session, setSession] = useState(null)
@@ -33,7 +34,6 @@ function QR() {
             expiries: codeExpiries
         }
         return JSON.stringify(values)
-
     }, [codeExpiries, session])
     const nextQRCode = () => {
         setCodeExpiries(time => time + timesToChanges)
@@ -45,7 +45,7 @@ function QR() {
     
     useEffect(() => {
         if(state && state.session) {
-            setSession(session)
+            setSession(state.session)
             return
         }
 
@@ -65,13 +65,19 @@ function QR() {
     if(loading || codeValues === null) return <SpinEffect />
 
     // extra
-    const extra = <Button onClick={() => history.goBack()}>Back</Button>
+    const goBack = () => history.goBack()
+    const extra = <Button onClick={goBack}>Back</Button>
     if(error.has) return <NotFound title={error.message} extra={extra} />
 
     return (
-        <div className="inherit d-flex-center">
+        <div className="inherit d-flex-center qr-page">
             <Space direction="vertical" size="large" align="center">
-                <h1> {session && session.name} </h1>
+                <Space align="center" size="middle" className="title" >  
+                    <ArrowLeftOutlined onClick={goBack} />
+                    <span >
+                        {session && session.name}
+                    </span>
+                </Space>
                 <div className="qr-code-area">
                     <QRCode size={300} value={codeValues} />
                 </div>
