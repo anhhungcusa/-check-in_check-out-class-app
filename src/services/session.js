@@ -2,13 +2,12 @@ import { Exception } from "../utils";
 import { messagedStatus } from "../constants/index";
 import { axios } from "../configs";
 
-const route = "/";
-const sessionPath = "sessions";
+const route = "/sessions";
 const createSession = async ({startAt, endAt, name, hostId, roomId}) => {
   try {
     const res = await axios({
       method: "post",
-      url: route + sessionPath,
+      url: route,
       data: {
         startAt,
         endAt,
@@ -26,4 +25,18 @@ const createSession = async ({startAt, endAt, name, hostId, roomId}) => {
   }
 };
 
-export default { createSession };
+const getSessionById = async id => {
+  try {
+    const res = await axios({
+      url: `${route}/${id}`,
+      method: 'get'
+    })
+    return res.data.session
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "get session failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+}
+
+export default { createSession, getSessionById };
