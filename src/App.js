@@ -20,7 +20,7 @@ function App() {
             <PublicRoute path="/login" layout={FullScreenLayout}>
               <LoginPage />
             </PublicRoute>
-            <PrivateRoute exact path="/" layout={FullScreenLayout}>
+            <PrivateRoute exact path="/" layout={MainLayout}>
               <HomePage/>
             </PrivateRoute>
             <PrivateRoute path="/sessions/:id/qr" layout={FullScreenLayout}>

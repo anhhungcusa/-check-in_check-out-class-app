@@ -6,7 +6,9 @@
 .body .pt-3 {
   padding-top: 5%;
 }
-
+.body .listSession {
+  padding-top: 20px;
+}
 .container {
   width: 80%;
   margin: 0 auto;
