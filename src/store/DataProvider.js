@@ -1,10 +1,10 @@
 import React from 'react'
-import decode from 'jwt-decode'
 import { useReducer } from 'react'
 import { reducer, actions } from '.'
 import { useEffect } from 'react'
 import { CookieService } from '../services'
-import globals from '../configs/globals'
+import {globals} from '../configs'
+import { jwtDecode } from '../utils'
 
 const DataContext = React.createContext()
 
@@ -24,11 +24,11 @@ function DataProvider({children}) {
     const [state, dispatch] = useReducer(reducer, initState) 
     useEffect(() => {
         const token = CookieService.getCookie(globals.env.COOKIE_KEY);
-        if(token) {
-            const user = decode(token)
-            dispatch(actions.setAuth(token))
-            dispatch(actions.setUser(user))
-        }
+        if(!token) return
+        const user = jwtDecode(token)
+        if(!user) return
+        dispatch(actions.setAuth(token))
+        dispatch(actions.setUser(user))
     }, [])
     return(
         <DataContext.Provider 
