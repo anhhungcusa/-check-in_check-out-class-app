@@ -31,6 +31,7 @@ function BodySessionPage() {
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
   const getUserNameById = (id) => {
+    if(!users) return '...'
     const result = users.find((item) => item._id === id);
     if (!result) return "RoBot";
     return result.fullname;
@@ -141,7 +142,7 @@ function BodySessionPage() {
               pathname: `/sessions/${text}/qr`,
               state: {
                 session: record
-              }
+              },
             }}
           >
             QR
