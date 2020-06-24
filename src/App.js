@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { PublicRoute, PrivateRoute } from './routes'
 import { FullScreenLayout, MainLayout } from './components';
-import { LoginPage, HomePage, QRPage } from './containers';
+import { LoginPage, HomePage, QRPage, ScanQR } from './containers';
 function App() {
 
   useEffect(() => {
@@ -22,6 +22,9 @@ function App() {
             </PublicRoute>
             <PrivateRoute exact path="/" layout={MainLayout}>
               <HomePage/>
+            </PrivateRoute>
+            <PrivateRoute path="/scan" layout={FullScreenLayout}>
+              <ScanQR/>
             </PrivateRoute>
             <PrivateRoute path="/sessions/:id/qr" layout={FullScreenLayout}>
               <QRPage/>
