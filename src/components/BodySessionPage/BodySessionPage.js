@@ -7,7 +7,7 @@ import AddSessionModal from "../AddSessionModal/AddSessionModal";
 import { useDispatch, useStore } from "../../hooks";
 import { UserService, RoomService, SessionService } from "../../services";
 import { actions } from "../../store";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 function BodySessionPage() {
   const dispatch = useDispatch();
@@ -31,6 +31,7 @@ function BodySessionPage() {
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
   const getUserNameById = (id) => {
+    if(!users) return '...'
     const result = users.find((item) => item._id === id);
     if (!result) return "RoBot";
     return result.fullname;
@@ -111,7 +112,8 @@ function BodySessionPage() {
       title: "Action",
       key: "action",
       dataIndex: "_id",
-      render: (text, record) => (
+      render: (text, record) => {
+        return (
         <Space size="middle">
           <NavLink
             activeClassName="link"
@@ -134,15 +136,19 @@ function BodySessionPage() {
           >
             Delete
           </NavLink>
-          <NavLink
-            activeClassName="link"
+          <Link
             className="ant-btn link form-button"
-            to={`/sessions/${text}/qr`}
+            to={{
+              pathname: `/sessions/${text}/qr`,
+              state: {
+                session: record
+              },
+            }}
           >
             QR
-          </NavLink>
+          </Link>
         </Space>
-      ),
+      )},
     },
   ];
 

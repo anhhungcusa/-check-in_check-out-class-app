@@ -14,6 +14,16 @@ function jwtDecode(token) {
     }
 }
 
+function parseObjectFromJson(value) {
+    try {
+        const result = JSON.parse(value)
+        if(typeof result !== 'object') throw new Error('value is not object stringify')
+        return result
+    } catch (error) {
+        return false
+    }
+}
 
 
-export {Exception, jwtDecode}
+
+export {Exception, jwtDecode, parseObjectFromJson}
