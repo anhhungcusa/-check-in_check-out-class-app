@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./BodySessionPage.css";
 import "antd/dist/antd.css";
-import { Table, Space } from "antd";
+import { Table, Space, Button } from "antd";
 import { formatDate, format } from "../../utils/moment";
 import AddSessionModal from "../AddSessionModal/AddSessionModal";
 import { useDispatch, useStore } from "../../hooks";
 import { UserService, RoomService, SessionService } from "../../services";
 import { actions } from "../../store";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function BodySessionPage() {
   const dispatch = useDispatch();
@@ -115,28 +115,20 @@ function BodySessionPage() {
       render: (text, record) => {
         return (
         <Space size="middle">
-          <NavLink
-            activeClassName="link"
+          <Link
             className="ant-btn link form-button"
-            to="/"
+            to={`/session/${text}`}
           >
             View
-          </NavLink>
-          <NavLink
-            activeClassName="link"
-            className="ant-btn link form-button"
-            to="/"
-          >
+          </Link>
+          <Link className="ant-btn link form-button" to="/">
             Edit
-          </NavLink>
-          <NavLink
-            activeClassName="link"
-            className="ant-btn link form-button"
-            to="/"
-          >
+          </Link>
+          <Link className="ant-btn link form-button" to="/">
             Delete
-          </NavLink>
+          </Link>
           <Link
+            activeClassName="link"
             className="ant-btn link form-button"
             to={{
               pathname: `/sessions/${text}/qr`,
@@ -156,7 +148,10 @@ function BodySessionPage() {
     <div className="body">
       <div className="container pt-3">
         <div className="create-btn">
-          <button onClick={open}>Create Session</button>
+          <Button onClick={open} type="primary">
+            Create Session
+          </Button>
+          {/* <button onClick={open}>Create Session</button> */}
         </div>
         <AddSessionModal isOpen={isOpen} open={open} close={close} />
         <div className="listSession">

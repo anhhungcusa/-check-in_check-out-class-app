@@ -25,20 +25,6 @@ const createSession = async ({startAt, endAt, name, hostId, roomId}) => {
   }
 };
 
-const getSessionById = async id => {
-  try {
-    const res = await axios({
-      url: `${route}/${id}`,
-      method: 'get'
-    })
-    return res.data.session
-  } catch (error) {
-    const message =
-      error.response?.data?.message || error.message || "get session failed";
-    throw new Exception(message, messagedStatus.error);
-  }
-}
-
 const getSessions = async () => {
   try {
     const res = await axios({
@@ -54,4 +40,19 @@ const getSessions = async () => {
   }
 };
 
-export default { createSession, getSessions, getSessionById };
+const getSession = async (id) => {
+  try {
+    const res = await axios({
+      method: "get",
+      url: `${route}/${id}`,
+    });
+    const { session, message } = res.data;
+    return { session, message, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "Get Session Failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+};
+
+export default { createSession, getSessions, getSession };
