@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { PublicRoute, PrivateRoute } from './routes'
 import { FullScreenLayout, MainLayout } from './components';
-import { LoginPage, HomePage } from './containers';
+import { LoginPage, HomePage, SessionDetail } from './containers';
 function App() {
 
   useEffect(() => {
@@ -20,12 +20,15 @@ function App() {
             <PublicRoute path="/login" layout={FullScreenLayout}>
               <LoginPage />
             </PublicRoute>
-            <PrivateRoute path="/" layout={MainLayout}>
+            <PrivateRoute exact path="/" layout={MainLayout}>
               <HomePage />
             </PrivateRoute>
             {/* <PrivateRoute path="/" layout={FullScreenLayout}>
               <HomePage/>
             </PrivateRoute> */}
+            <PrivateRoute path="/session/:id" layout={MainLayout}>
+              <SessionDetail />
+            </PrivateRoute>
             <PublicRoute layout={FullScreenLayout}>
               page not found
             </PublicRoute>

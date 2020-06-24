@@ -41,4 +41,19 @@ const getSessions = async () => {
   }
 };
 
-export default { createSession, getSessions };
+const getSession = async (id) => {
+  try {
+    const res = await axios({
+      method: "get",
+      url: `/sessions/${id}`,
+    });
+    const { session, message } = res.data;
+    return { session, message, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "Get Session Failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+};
+
+export default { createSession, getSessions, getSession };

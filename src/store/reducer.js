@@ -32,7 +32,7 @@ function reducer(state, { type, payload }) {
       if (!sessions) {
         sessions = session;
       } else {
-        sessions.push(session[0]);
+        sessions.push(session);
       }
       return { ...state, sessions };
     }

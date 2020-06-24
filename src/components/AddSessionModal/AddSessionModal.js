@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./AddSessionModal.css";
-import "antd/dist/antd.css";
+import 'antd/dist/antd.css';
 import { Select, Modal, Form, Input, Button, DatePicker, message } from "antd";
 import { useDispatch, useStore } from "../../hooks";
 import { UserService, RoomService, SessionService } from "../../services";

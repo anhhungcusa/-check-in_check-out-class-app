@@ -15,21 +15,6 @@
   padding: 0 20px;
 }
 
-.create-btn button {
-    cursor: pointer;
-    height: 30px;
-    border: 1px solid rgba(var(--b6a,219,219,219),1);
-    border-radius: 5px;
-    color: white;
-    background-color: #007bff;
-    font-weight: 600;
-    outline: none;
-}
-.create-btn button:hover {
-    background-color: white;
-    color: black;
-}
-
 .d-flex {
   display: flex;
 }
