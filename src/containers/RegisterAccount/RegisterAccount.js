@@ -1,15 +1,12 @@
 import React, { useState, useMemo } from 'react'
-import './Login.css'
+import './RegisterAccount.css'
 import { Form, Input, Button, message } from 'antd'
-import {useRouter, useDispatch} from '../../hooks';
+import {useRouter} from '../../hooks';
 import { Link } from 'react-router-dom';
-import { AuthService, CookieService } from '../../services';
-import { actions } from '../../store';
+import { AuthService } from '../../services';
 import {UserOutlined} from '@ant-design/icons'
-import { globals } from '../../configs';
-function Login() {
+function RegisterAccount() {
     const router = useRouter();
-    const dispatch = useDispatch()
 	const [ isValidForm, setIsValidForm ] = useState(false);
 	const onChangeFields = (_, allFields) => {
 		const isValid = allFields.every((field) => field.errors.length === 0 && field.value);
@@ -24,16 +21,17 @@ function Login() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const onFinish = ({ username, password }) => {
+	const onFinish = ({ username, password, fullname }) => {
         setLoading(true);
-        AuthService.login(username, password)
+        AuthService.register(username, password, fullname)
             .then(res => {
-                const { from = '/' } = router.state || {};
-                const {user, token} = res
-				dispatch(actions.setAuth(token))
-				CookieService.setCookie(globals.env.COOKIE_KEY, token)
-                dispatch(actions.setUser(user))
-                router.replace(from)
+                message.success(res.message)
+                router.push({
+                    pathname: '/login',
+                    state: {
+                        username, password
+                    }
+                })
             }).catch(error => {
                 message[error.status](error.message)
                 setLoading(false)
@@ -41,23 +39,27 @@ function Login() {
 	};
 
     return (
-        <div className="login-page inherit d-flex-center ">
+        <div className="register-account-page inherit d-flex-center ">
             <div className="card ">
                 <div className="logo d-flex justify-center ">
                     <UserOutlined />
                 </div>
-				<h2 className="title ">Login</h2>
-				<div className="login-form">
+				<h2 className="title ">Register</h2>
+				<div className="register-account-form">
 					<Form
 						initialValues={initialValues}
 						onFieldsChange={onChangeFields}
 						scrollToFirstError
-						name="login"
+						name="register-account"
 						onFinish={onFinish}
 					>
                         <Form.Item name="username" 
                             rules={[ { required: true, message: 'username is required' } ]} hasFeedback>
 							<Input className="form-input" placeholder="username" />
+						</Form.Item>
+                        <Form.Item name="fullname" 
+                            hasFeedback rules={[ { required: true, message: 'fullname is required' } ]}>
+                        <Input className="form-input" placeholder="fullname" />
 						</Form.Item>
                         <Form.Item name="password" 
                             hasFeedback rules={[ { required: true, message: 'username is required' } ]}>
@@ -65,7 +67,7 @@ function Login() {
 						</Form.Item>
 						<Form.Item>
 							<Button disabled={!isValidForm} htmlType="submit" loading={loading} className="form-button">
-								Login
+								Register
 							</Button>
 						</Form.Item>
 					</Form>
@@ -73,11 +75,11 @@ function Login() {
 			</div>
 			<div className="card">
 				<span className="addition">
-					Don't have an account? <Link to="/register">Register now!</Link>
+					You have an account? <Link to="/login">Login now!</Link>
 				</span>
 			</div>
         </div>
     )
 }
 
-export default Login
+export default RegisterAccount

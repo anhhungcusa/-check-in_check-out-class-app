@@ -38,4 +38,4 @@ const register = async (username, password, fullname) => {
     }
 }
 
-export default {login, register}
+export default {login, register, route, loginPath, registerPath}
