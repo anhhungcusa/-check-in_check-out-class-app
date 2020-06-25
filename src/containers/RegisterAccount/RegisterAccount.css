@@ -1,0 +1,44 @@
+.register-account-page {
+    flex-direction: column;
+}
+.register-account-page .logo {
+    margin-top: 20px;
+}
+.register-account-page .logo > * {
+    font-size: 150px;
+    border: 5px solid;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.register-account-page .card {
+    border: 1px solid ;
+    width: 350px;
+    border-radius: 3px;
+    margin: 0 0 10px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.card .title {
+    color: #000000a6;
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+
+
+
+.register-account-form {
+    padding: 20px 40px 10px;
+}
+
+.register-account-form .form-button {
+    border-radius: 4px;
+    height: 35px;
+    width: 100%;
+    font-weight: 600;
+}
+
+.register-account-page .card:last-child {
+    background: white;
+}

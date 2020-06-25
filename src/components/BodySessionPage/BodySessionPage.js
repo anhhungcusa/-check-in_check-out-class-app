@@ -117,7 +117,7 @@ function BodySessionPage() {
         <Space size="middle">
           <Link
             className="ant-btn link form-button"
-            to={`/session/${text}`}
+            to={`/sessions/${text}`}
           >
             View
           </Link>
