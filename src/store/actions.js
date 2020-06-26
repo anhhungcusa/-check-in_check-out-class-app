@@ -12,7 +12,7 @@ const setUsers = users => ({type: types.SET_USERS, payload: {users}})
 const setRooms = rooms => ({type: types.SET_ROOMS, payload: {rooms}})
 const addSession = session => ({type: types.ADD_SESSION, payload: {session}})
 const setSessions = sessions => ({type: types.SET_SESSIONS, payload: {sessions}})
-
+const addRoom = room => ({type: types.ADD_ROOM, payload: {room}})
 const resetAuth = () => ({type: types.RESET_AUTH})
 
 export default {
@@ -22,5 +22,6 @@ export default {
     setUsers,
     setRooms,
     addSession ,
-    setSessions
+    setSessions,
+    addRoom
 }

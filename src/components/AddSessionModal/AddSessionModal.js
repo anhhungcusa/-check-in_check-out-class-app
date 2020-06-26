@@ -55,7 +55,7 @@ function AddSessionModal({ close, isOpen }) {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="startAt"
+          label="StartAt"
           name="startAt"
           rules={[{ required: true, message: "Please input field startAt!" }]}
         >
@@ -63,7 +63,7 @@ function AddSessionModal({ close, isOpen }) {
         </Form.Item>
 
         <Form.Item
-          label="endAt"
+          label="EndAt"
           name="endAt"
           rules={[{ required: true, message: "Please input field endAt!" }]}
         >
