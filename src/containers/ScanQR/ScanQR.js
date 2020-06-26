@@ -24,7 +24,7 @@ function ScanQR() {
             }
             CheckInCheckOutService.checking(codeId, sessionId, expiries)
                 .then(({ session, message }) => {
-                    const { name, room } = session
+                    const { name, room } = session || {}
                     notification.success({
                         message: message,
                         description: (
@@ -36,7 +36,7 @@ function ScanQR() {
                     })
                     goBack()
                 }).catch(error => {
-                    message.error(error.message)
+                    message.error(error.message, 2)
                     setCodeValues(null)
                 })
         }

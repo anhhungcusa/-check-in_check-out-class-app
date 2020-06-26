@@ -3,13 +3,15 @@ import {messagedStatus} from '../constants/index'
 import { axios } from "../configs"
 
 const route = '/checkin-checkout' 
-const checking = async (codeId, sessionId, expiries) => {
+const checking = async (codeId, sessionId, expires) => {
     try {
+        const checkingAt = Date.now()
+        if(checkingAt > expires) throw new Exception('QR code is expired')
         const res = await axios({
             method: "post",
             url: route,
             data: {
-                codeId, sessionId, expiries, checkingAt: Date.now()
+                codeId, sessionId
             }
         }) 
         const {session, message} = res.data
