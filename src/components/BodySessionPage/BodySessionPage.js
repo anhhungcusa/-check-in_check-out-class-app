@@ -51,7 +51,7 @@ function BodySessionPage() {
       render: (text, record, index) => <Space size="small">{index + 1}</Space>,
     },
     {
-      title: "startAt",
+      title: "StartAt",
       width: 200,
       dataIndex: "startAt",
       key: "startAt",
@@ -59,10 +59,9 @@ function BodySessionPage() {
         <Space size="small">{formatDate(text)}</Space>
       ),
       sorter: (a, b) => format(a.startAt) - format(b.startAt),
-      sortDirections: ["descend", "ascend"],
     },
     {
-      title: "endAt",
+      title: "EndAt",
       width: 200,
       dataIndex: "endAt",
       key: "endAt",
@@ -71,15 +70,14 @@ function BodySessionPage() {
       ),
     },
     {
-      title: "name",
+      title: "Name",
       width: 150,
       key: "name",
       dataIndex: "name",
-      defaultSortOrder: ["ascend"],
       sorter: (a, b) => a.name.length - b.name.length,
     },
     {
-      title: "host",
+      title: "Host",
       dataIndex: "hostId",
       width: 100,
       key: "hostId",
@@ -90,7 +88,7 @@ function BodySessionPage() {
       onFilter: (value, record) => record.hostId.includes(value),
     },
     {
-      title: "room",
+      title: "Room",
       width: 100,
       dataIndex: "roomId",
       key: "roomId",

@@ -3,7 +3,7 @@ import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 import { useRouter } from '../../hooks';
-import { HomeOutlined, UserOutlined, ScanOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined, ScanOutlined, FundOutlined } from '@ant-design/icons';
 
 const NavBar = () => {
     const [currentItem, setCurrentItem] = useState('/');
@@ -42,6 +42,14 @@ const NavBar = () => {
                 >
                     <Link className="nav-link" to="/scan" />
                         Scan
+                    </Menu.Item>
+                <Menu.Item
+                    key="/rooms"
+                    className="top-nav__item"
+                    icon={<FundOutlined />}
+                >
+                    <Link className="nav-link" to="/rooms" />
+                        Room
                     </Menu.Item>
             </Menu>
         </div>

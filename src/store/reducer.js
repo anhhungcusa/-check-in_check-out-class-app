@@ -40,6 +40,12 @@ function reducer(state, { type, payload }) {
       const { sessions } = payload;
       return { ...state, sessions };
     }
+    case types.ADD_ROOM: {
+      const { room } = payload;
+      let { rooms = [] } = state;
+      rooms.slice(room);
+      return { ...state, rooms };
+    }
     default:
       console.error(`Unhandled action type: ${type}`);
       return state;

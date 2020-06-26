@@ -7,7 +7,7 @@ const getRooms = async () => {
   try {
     const res = await axios({
       method: "get",
-      url: route
+      url: route,
     });
     const { rooms, message } = res.data;
     return { rooms, message, status: messagedStatus.success };
@@ -18,4 +18,21 @@ const getRooms = async () => {
   }
 };
 
-export default { getRooms };
+const createRoom = async ({ name }) => {
+  try {
+    const res = await axios({
+      method: "post",
+      url: route,
+      data: {
+        name,
+      },
+    });
+    const { session, message } = res.data;
+    return { session, message, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "Create Room Failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+};
+export default { getRooms, createRoom };
