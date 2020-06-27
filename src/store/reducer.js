@@ -57,6 +57,15 @@ function reducer(state, { type, payload }) {
       const {roles} = payload 
       return {...state, roles}
     }
+    case types.DELETE_USER: {
+      const {userId} = payload
+      const users = state.users.slice()
+      const deletedIndex = users.findIndex(user => user._id === userId)
+      if(deletedIndex !== -1) {
+        users.splice(deletedIndex, 1)
+      }
+      return {...state, users: users}
+    }
     default:
       console.error(`Unhandled action type: ${type}`);
       return state;

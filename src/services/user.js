@@ -18,6 +18,20 @@ const getUser = async () => {
   }
 };
 
+const deleteUserById = async (userId, username) => {
+  try {
+    await axios({
+      method: 'delete',
+      url: `${route}/${userId}`
+    });
+    return { message: `delete ${username} success` };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || `delete ${username} failed`;
+    throw new Exception(message, messagedStatus.error);
+  }
+}
+
 const getRoles = async () => {
   try {
     const res = await axios({
@@ -33,4 +47,4 @@ const getRoles = async () => {
   }
 }
 
-export default { getUser, getRoles };
+export default { getUser, getRoles, deleteUserById };
