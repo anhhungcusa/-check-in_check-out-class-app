@@ -10,6 +10,7 @@ const ADD_ROOM = 'ADD_ROOM'
 const DELETE_SESSION = 'DELETE_SESSION'
 const SET_ROLES = 'SET_ROLES'
 const EDIT_SESSION = 'EDIT_SESSION'
+const DELETE_USER = 'DELETE_USER'
 
 export default {
     SET_AUTH,
@@ -22,5 +23,6 @@ export default {
     ADD_ROOM,
     DELETE_SESSION,
     SET_ROLES,
-    EDIT_SESSION
+    EDIT_SESSION,
+    DELETE_USER,
 }
