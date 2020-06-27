@@ -3,7 +3,7 @@ import "./Room.css";
 import "antd/dist/antd.css";
 import { Table, Space, Button } from "antd";
 import { formatDate } from "../../utils/moment";
-import AddRoomModal from "../../components/AddRoomModal/AddRoomModal";
+import { AddRoomModal } from "../../components";
 import { useDispatch, useStore } from "../../hooks";
 import { RoomService } from "../../services";
 import { actions } from "../../store";

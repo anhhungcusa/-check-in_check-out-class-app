@@ -3,8 +3,8 @@ import "./BodySessionPage.css";
 import "antd/dist/antd.css";
 import { Table, Space, Button, message } from "antd";
 import { formatDate, format, checkTimeSessionValid } from "../../utils/moment";
-import AddSessionModal from "../AddSessionModal/AddSessionModal";
 import { useDispatch, useStore, useRequireRole } from "../../hooks";
+import { AddSessionModal, EditSessionModal } from "../index";
 import { UserService, RoomService, SessionService } from "../../services";
 import { actions } from "../../store";
 import { Link } from "react-router-dom";
@@ -30,9 +30,17 @@ function BodySessionPage() {
     });
   }, [dispatch]);
 
+  const [session, setSession] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const open = () => setIsOpen(true);
+  const openEditModal = (record) => {
+    setSession(record);
+    setIsOpenEditModal(true);
+  };
   const close = () => setIsOpen(false);
+  const closeEditModal = () => setIsOpenEditModal(false);
+
   const getUserNameById = (id) => {
     if (!users) return "...";
     const result = users.find((item) => item._id === id);
@@ -126,9 +134,12 @@ function BodySessionPage() {
             <Link className="ant-btn link form-button" to={`/sessions/${text}`}>
               View
             </Link>
-            <Link className="ant-btn link form-button" to="/">
+            <Button
+              className="ant-btn link form-button"
+              onClick={() => openEditModal(record)}
+            >
               Edit
-            </Link>
+            </Button>
             <Button
               className="ant-btn link form-button"
               onClick={() => handleDeleteSession(text)}
@@ -166,6 +177,12 @@ function BodySessionPage() {
           }
         </div>
         <AddSessionModal isOpen={isOpen} open={open} close={close} />
+        <EditSessionModal
+          isOpen={isOpenEditModal}
+          open={openEditModal}
+          close={closeEditModal}
+          session={session}
+        />
         <div className="listSession">
           <Table
             bordered
