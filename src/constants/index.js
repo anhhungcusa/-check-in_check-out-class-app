@@ -7,5 +7,18 @@ const messagedStatus = {
     loading: 'loading'
 }
 
+const roles = {
+    admin: 'admin',
+    student: 'student',
+    teacher: 'teacher',
+}
 
-export {messagedStatus}
+roles.values = function() {
+    const values = Object.values(roles)
+    values.pop()
+    return values
+}
+
+
+
+export {messagedStatus, roles}

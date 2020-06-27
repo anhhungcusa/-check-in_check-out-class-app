@@ -14,6 +14,8 @@ import {
   RegisterAccountPage,
   RoomPage,
 } from "./containers";
+import ManageUser from "./containers/ManageUser/ManageUser";
+import { roles } from "./constants";
 function App() {
   useEffect(() => {
     document.title = "QR";
@@ -36,16 +38,16 @@ function App() {
             <PrivateRoute path="/scan" layout={FullScreenLayout}>
               <ScanQRPage />
             </PrivateRoute>
-            <PrivateRoute path="/sessions/:id/qr" layout={FullScreenLayout}>
+            <PrivateRoute roles={[roles.admin, roles.teacher]} path="/sessions/:id/qr" layout={FullScreenLayout}>
               <QRPage />
             </PrivateRoute>
-            <PrivateRoute path="/rooms" layout={MainLayout}>
+            <PrivateRoute  roles={[roles.admin, roles.teacher]}path="/rooms" layout={MainLayout}>
               <RoomPage />
             </PrivateRoute>
-            {/* <PrivateRoute path="/" layout={FullScreenLayout}>
-              <HomePage/>
-            </PrivateRoute> */}
-            <PrivateRoute path="/sessions/:id" layout={MainLayout}>
+            <PrivateRoute roles={[roles.admin]} path="/users" layout={MainLayout}>
+              <ManageUser />
+            </PrivateRoute>
+            <PrivateRoute roles={[roles.admin, roles.teacher]} path="/sessions/:id" layout={MainLayout}>
               <SessionDetail />
             </PrivateRoute>
             <PublicRoute layout={FullScreenLayout}>page not found</PublicRoute>

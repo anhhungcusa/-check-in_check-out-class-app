@@ -17,7 +17,8 @@ const initState = {
     user: null,
     users: null,
     rooms: null,
-    sessions: null
+    sessions: null,
+    roles: null
 }
 
 function DataProvider({children}) {

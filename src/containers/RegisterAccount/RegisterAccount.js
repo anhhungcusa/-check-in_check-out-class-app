@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import './RegisterAccount.css'
-import { Form, Input, Button, message } from 'antd'
+import { Form, Input, Button, message, Checkbox } from 'antd'
 import {useRouter} from '../../hooks';
 import { Link } from 'react-router-dom';
 import { AuthService } from '../../services';
@@ -20,10 +20,16 @@ function RegisterAccount() {
 		return { username, password };
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
+	const plainOptions = ['student', 'teacher'];
+	const [role, setRole] = useState(plainOptions[0])
+	const onChangeRole = (checkedValues) => {
+		if(checkedValues.length === 0) return
+		const checked = checkedValues.find(value => value !== role)
+		setRole(checked)
+	}
 	const onFinish = ({ username, password, fullname }) => {
         setLoading(true);
-        AuthService.register(username, password, fullname)
+        AuthService.register(username, password, fullname, role)
             .then(res => {
                 message.success(res.message)
                 router.push({
@@ -64,6 +70,9 @@ function RegisterAccount() {
                         <Form.Item name="password" 
                             hasFeedback rules={[ { required: true, message: 'username is required' } ]}>
 							<Input.Password className="form-input" placeholder="password" />
+						</Form.Item>
+                        <Form.Item>
+								<Checkbox.Group onChange={onChangeRole} value={[role]} options={plainOptions} />
 						</Form.Item>
 						<Form.Item>
 							<Button disabled={!isValidForm} htmlType="submit" loading={loading} className="form-button">
