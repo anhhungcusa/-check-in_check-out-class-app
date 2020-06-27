@@ -70,4 +70,31 @@ const deleteSession = async (id) => {
   }
 };
 
-export default { createSession, getSessions, getSession, deleteSession };
+const editSession = async ({ id, startAt, endAt, name, roomId }) => {
+  try {
+    const res = await axios({
+      method: "post",
+      url: route + `/${id}`,
+      data: {
+        startAt,
+        endAt,
+        name,
+        roomId
+      },
+    });
+    const { session, message } = res.data;
+    return { session, message, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "Delete Session Failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+};
+
+export default {
+  createSession,
+  getSessions,
+  getSession,
+  deleteSession,
+  editSession,
+};

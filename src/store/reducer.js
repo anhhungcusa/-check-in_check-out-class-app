@@ -53,6 +53,16 @@ function reducer(state, { type, payload }) {
       newSessions.splice(index, 1);
       return { ...state, sessions: newSessions };
     }
+    case types.EDIT_SESSION: {
+      const { session } = payload;
+      let { sessions = [] } = state;
+      let newSessions = sessions.slice();
+      let index = newSessions.findIndex((item) => item._id === session._id);
+      if (index === -1) return newSessions;
+      newSessions[index] = session;
+      console.log('zz', newSessions)
+      return { ...state, sessions: newSessions };
+    }
     default:
       console.error(`Unhandled action type: ${type}`);
       return state;

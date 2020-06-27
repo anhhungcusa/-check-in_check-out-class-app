@@ -15,6 +15,7 @@ const setSessions = sessions => ({type: types.SET_SESSIONS, payload: {sessions}}
 const addRoom = room => ({type: types.ADD_ROOM, payload: {room}})
 const resetAuth = () => ({type: types.RESET_AUTH})
 const deleteSession = _id => ({type: types.DELETE_SESSION, payload: {_id}})
+const editSession = session => ({type: types.EDIT_SESSION, payload: {session}})
 
 export default {
     setAuth,
@@ -25,5 +26,6 @@ export default {
     addSession ,
     setSessions,
     addRoom,
-    deleteSession
+    deleteSession,
+    editSession
 }
