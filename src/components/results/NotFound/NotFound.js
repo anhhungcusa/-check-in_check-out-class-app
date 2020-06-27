@@ -4,22 +4,23 @@ import { useRouter } from '../../../hooks'
 
 function NotFound({ 
     title = 'Sorry, the resource you visited does not exist.',
+    status = '404',
     extra
 }) {
-    const {push} = useRouter()
-    const onGoHome = () => {
-        push('/')
+    const {history} = useRouter()
+    const onGoBack = () => {
+        history.goBack()
     }
 
     return (
         <div className="inherit d-flex-center">
             <Result
-                status="404"
+                status={status}
                 // title={title}
                 subTitle={title}
                 extra={
                     extra ? extra : (
-                        <Button onClick={onGoHome} type="primary">Back Home</Button>
+                        <Button onClick={onGoBack} type="primary">Back</Button>
                     )}
             />
         </div>

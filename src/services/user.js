@@ -18,4 +18,19 @@ const getUser = async () => {
   }
 };
 
-export default { getUser };
+const getRoles = async () => {
+  try {
+    const res = await axios({
+      method: "get",
+      url: `${route}/roles`
+    });
+    const { roles } = res.data;
+    return { roles, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "get roles failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+}
+
+export default { getUser, getRoles };

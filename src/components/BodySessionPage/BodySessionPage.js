@@ -4,13 +4,15 @@ import "antd/dist/antd.css";
 import { Table, Space, Button, message } from "antd";
 import { formatDate, format, checkTimeSessionValid } from "../../utils/moment";
 import AddSessionModal from "../AddSessionModal/AddSessionModal";
-import { useDispatch, useStore } from "../../hooks";
+import { useDispatch, useStore, useRequireRole } from "../../hooks";
 import { UserService, RoomService, SessionService } from "../../services";
 import { actions } from "../../store";
 import { Link } from "react-router-dom";
+import { roles } from "../../constants";
 
 function BodySessionPage() {
   const dispatch = useDispatch();
+  const requireRoles = useRequireRole()
   const { user, rooms, sessions, users } = useStore();
   useEffect(() => {
     SessionService.getSessions().then((res) => {
@@ -112,7 +114,9 @@ function BodySessionPage() {
         }),
       onFilter: (value, record) => record.roomId.includes(value),
     },
-    {
+  ];
+  if(requireRoles([roles.teacher])) {
+    columns.push({
       title: "Action",
       key: "_id",
       dataIndex: "_id",
@@ -146,17 +150,20 @@ function BodySessionPage() {
           </Space>
         );
       },
-    },
-  ];
+    })
+  }
 
   return (
     <div className="body">
       <div className="container pt-3">
         <div className="create-btn">
-          <Button onClick={open} type="primary">
-            Create Session
-          </Button>
-          {/* <button onClick={open}>Create Session</button> */}
+          {
+            requireRoles([roles.teacher]) && (
+              <Button onClick={open} type="primary">
+                Create Session
+              </Button>
+            )
+          }
         </div>
         <AddSessionModal isOpen={isOpen} open={open} close={close} />
         <div className="listSession">

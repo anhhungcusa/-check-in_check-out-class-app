@@ -22,13 +22,13 @@ const login = async (username, password) => {
     }
 }
 
-const register = async (username, password, fullname) => {
+const register = async (username, password, fullname, role) => {
     try {
         await axios({
             method: "post",
             url: route + registerPath,
             data: {
-                username, password, fullname
+                username, password, fullname, role
             }
         }) 
         return {message: 'register success', status: messagedStatus.success}

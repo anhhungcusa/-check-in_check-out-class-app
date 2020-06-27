@@ -53,6 +53,10 @@ function reducer(state, { type, payload }) {
       newSessions.splice(index, 1);
       return { ...state, sessions: newSessions };
     }
+    case types.SET_ROLES: {
+      const {roles} = payload 
+      return {...state, roles}
+    }
     default:
       console.error(`Unhandled action type: ${type}`);
       return state;
