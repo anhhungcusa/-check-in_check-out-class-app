@@ -9,7 +9,7 @@ export const format = (dateString) => {
   return new moment(dateString).format("YYYYMMDD");
 };
 
-export const checkTimeValidSession = (id, sessions) => {
+export const checkTimeSessionValid = (id, sessions) => {
   const result = sessions.find((item) => item._id === id);
   const timeNow = moment().format();
   const { startAt, endAt } = result;

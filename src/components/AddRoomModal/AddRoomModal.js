@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./AddRoomModal.css";
 import "antd/dist/antd.css";
 import {  Modal, Form, Input, Button, message } from "antd";
@@ -16,15 +16,10 @@ const tailLayout = {
 
 function AddRoomModal({ close, isOpen }) {
   const dispatch = useDispatch();
-  useEffect(() => {
-    RoomService.getRooms().then((res) => {
-      dispatch(actions.setRooms(res.rooms));
-    });
-  }, [dispatch]);
 
   const onFinish = (values) => {
     RoomService.createRoom(values).then((res) => {
-      dispatch(actions.addSession(res.room));
+      dispatch(actions.addRoom(res.room));
       close();
       message.success(res.message);
     });

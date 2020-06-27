@@ -28,13 +28,10 @@ function reducer(state, { type, payload }) {
     }
     case types.ADD_SESSION: {
       const { session } = payload;
-      var { sessions } = state;
-      if (!sessions) {
-        sessions = session;
-      } else {
-        sessions.push(session);
-      }
-      return { ...state, sessions };
+      let { sessions = [] } = state;
+      let newSessions = sessions.slice();
+      newSessions.push(session);
+      return { ...state, sessions: newSessions };
     }
     case types.SET_SESSIONS: {
       const { sessions } = payload;
@@ -43,8 +40,18 @@ function reducer(state, { type, payload }) {
     case types.ADD_ROOM: {
       const { room } = payload;
       let { rooms = [] } = state;
-      rooms.slice(room);
-      return { ...state, rooms };
+      let newRooms = rooms.slice();
+      newRooms.push(room);
+      return { ...state, rooms: newRooms };
+    }
+    case types.DELETE_SESSION: {
+      const { _id } = payload;
+      let { sessions = [] } = state;
+      let newSessions = sessions.slice();
+      let index = newSessions.findIndex((item) => item._id === _id);
+      if (index === -1) return newSessions;
+      newSessions.splice(index, 1);
+      return { ...state, sessions: newSessions };
     }
     default:
       console.error(`Unhandled action type: ${type}`);

@@ -27,8 +27,8 @@ const createRoom = async ({ name }) => {
         name,
       },
     });
-    const { session, message } = res.data;
-    return { session, message, status: messagedStatus.success };
+    const { room, message } = res.data;
+    return { room, message, status: messagedStatus.success };
   } catch (error) {
     const message =
       error.response?.data?.message || error.message || "Create Room Failed";
