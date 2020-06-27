@@ -59,7 +59,7 @@ function AddSessionModal({ close, isOpen }) {
           name="startAt"
           rules={[{ required: true, message: "Please input field startAt!" }]}
         >
-          <DatePicker />
+          <DatePicker showTime  />
         </Form.Item>
 
         <Form.Item
@@ -67,7 +67,7 @@ function AddSessionModal({ close, isOpen }) {
           name="endAt"
           rules={[{ required: true, message: "Please input field endAt!" }]}
         >
-          <DatePicker />
+          <DatePicker showTime  />
         </Form.Item>
 
         <Form.Item

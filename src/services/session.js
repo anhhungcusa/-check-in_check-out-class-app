@@ -3,7 +3,7 @@ import { messagedStatus } from "../constants/index";
 import { axios } from "../configs";
 
 const route = "/sessions";
-const createSession = async ({startAt, endAt, name, hostId, roomId}) => {
+const createSession = async ({ startAt, endAt, name, hostId, roomId }) => {
   try {
     const res = await axios({
       method: "post",
@@ -55,4 +55,19 @@ const getSession = async (id) => {
   }
 };
 
-export default { createSession, getSessions, getSession };
+const deleteSession = async (id) => {
+  try {
+    const res = await axios({
+      method: "delete",
+      url: route + `/${id}`,
+    });
+    const { message } = res.data;
+    return { message, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "Delete Session Failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+};
+
+export default { createSession, getSessions, getSession, deleteSession };

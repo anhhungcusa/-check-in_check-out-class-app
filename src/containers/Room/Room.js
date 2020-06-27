@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 function Room() {
   const dispatch = useDispatch();
   const { rooms } = useStore();
-
+  console.log('rooms', rooms)
   useEffect(() => {
     RoomService.getRooms().then((res) => {
       dispatch(actions.setRooms(res.rooms));
