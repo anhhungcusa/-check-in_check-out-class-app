@@ -18,7 +18,7 @@ const tailLayout = {
 
 function EditSessionModal({ close, isOpen, session }) {
   const dispatch = useDispatch();
-  const { user, rooms } = useStore();
+  const { rooms } = useStore();
 
   useEffect(() => { 
     RoomService.getRooms().then((res) => {
