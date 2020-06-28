@@ -7,7 +7,7 @@ const getUser = async () => {
   try {
     const res = await axios({
       method: "get",
-      url: route
+      url: route,
     });
     const { users, message } = res.data;
     return { users, message, status: messagedStatus.success };
@@ -21,22 +21,24 @@ const getUser = async () => {
 const deleteUserById = async (userId, username) => {
   try {
     await axios({
-      method: 'delete',
-      url: `${route}/${userId}`
+      method: "delete",
+      url: `${route}/${userId}`,
     });
     return { message: `delete ${username} success` };
   } catch (error) {
     const message =
-      error.response?.data?.message || error.message || `delete ${username} failed`;
+      error.response?.data?.message ||
+      error.message ||
+      `delete ${username} failed`;
     throw new Exception(message, messagedStatus.error);
   }
-}
+};
 
 const getRoles = async () => {
   try {
     const res = await axios({
       method: "get",
-      url: `${route}/roles`
+      url: `${route}/roles`,
     });
     const { roles } = res.data;
     return { roles, status: messagedStatus.success };
@@ -45,6 +47,21 @@ const getRoles = async () => {
       error.response?.data?.message || error.message || "get roles failed";
     throw new Exception(message, messagedStatus.error);
   }
-}
+};
 
-export default { getUser, getRoles, deleteUserById };
+const getUserById = async (id) => {
+  try {
+    const res = await axios({
+      method: "get",
+      url: route + `/${id}`,
+    });
+    const { user, message } = res.data;
+    return { user, message, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "Get User Failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+};
+
+export default { getUser, getRoles, deleteUserById, getUserById };

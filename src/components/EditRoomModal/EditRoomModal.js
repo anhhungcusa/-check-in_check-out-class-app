@@ -22,7 +22,7 @@ function EditRoomModal({ close, isOpen, room }) {
     let { name } = room;
     return { name };
   }, [room]);
-  console.log('init', initialValues)
+
   const onFinish = (values) => {
     values.id = room._id;
     RoomService.editRoom(values).then((res) => {
