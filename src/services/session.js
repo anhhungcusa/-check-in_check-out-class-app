@@ -73,7 +73,7 @@ const deleteSession = async (id) => {
 const editSession = async ({ id, startAt, endAt, name, roomId }) => {
   try {
     const res = await axios({
-      method: "post",
+      method: "patch",
       url: route + `/${id}`,
       data: {
         startAt,
