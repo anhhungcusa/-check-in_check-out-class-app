@@ -76,6 +76,15 @@ function reducer(state, { type, payload }) {
       }
       return {...state, users: users}
     }
+    case types.DELETE_ROOM: {
+      const {roomId} = payload
+      const rooms = state.rooms.slice()
+      const deletedIndex = rooms.findIndex(room => room._id === roomId)
+      if(deletedIndex !== -1) {
+        rooms.splice(deletedIndex, 1)
+      }
+      return {...state, rooms: rooms}
+    }
     default:
       console.error(`Unhandled action type: ${type}`);
       return state;

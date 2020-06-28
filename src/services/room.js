@@ -35,4 +35,20 @@ const createRoom = async ({ name }) => {
     throw new Exception(message, messagedStatus.error);
   }
 };
-export default { getRooms, createRoom };
+
+const deleteRoom = async (id) => {
+  try {
+    const res = await axios({
+      method: "delete",
+      url: route + `/${id}`,
+    });
+    const { message } = res.data;
+    return { message, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "Delete Room Failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+};
+
+export default { getRooms, createRoom, deleteRoom };

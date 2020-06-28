@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Room.css";
 import "antd/dist/antd.css";
-import { Table, Space, Button } from "antd";
+import { Table, Space, Button, message } from "antd";
 import { formatDate } from "../../utils/moment";
 import { AddRoomModal } from "../../components";
 import { useDispatch, useStore } from "../../hooks";
@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 function Room() {
   const dispatch = useDispatch();
   const { rooms } = useStore();
-  console.log('rooms', rooms)
+  console.log("rooms", rooms);
   useEffect(() => {
     RoomService.getRooms().then((res) => {
       dispatch(actions.setRooms(res.rooms));
@@ -22,6 +22,12 @@ function Room() {
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
 
+  const handleDeleteRoom = (id) => {
+    RoomService.deleteRoom(id).then(res => {
+      dispatch(actions.deleteRoomById(id));
+      message.success(res.message)
+    })
+  }
   const columns = [
     {
       title: "#",
@@ -56,9 +62,12 @@ function Room() {
             <Link className="ant-btn link form-button" to={`/rooms/${text}`}>
               Edit
             </Link>
-            <Link className="ant-btn link form-button" to={`/rooms/${text}`}>
+            <Button
+              onClick={() => handleDeleteRoom(text)}
+              className="ant-btn link form-button"
+            >
               Delete
-            </Link>
+            </Button>
           </Space>
         );
       },
