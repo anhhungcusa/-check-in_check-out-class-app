@@ -19,6 +19,10 @@ roles.values = function() {
     return values
 }
 
+const socketConnections = {
+    qrSession: 'qr session'
+}
 
 
-export {messagedStatus, roles}
+
+export {messagedStatus, roles, socketConnections}
