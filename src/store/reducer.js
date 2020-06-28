@@ -54,8 +54,8 @@ function reducer(state, { type, payload }) {
       return { ...state, sessions: newSessions };
     }
     case types.SET_ROLES: {
-      const {roles} = payload 
-      return {...state, roles}
+      const { roles } = payload;
+      return { ...state, roles };
     }
     case types.EDIT_SESSION: {
       const { session } = payload;
@@ -64,26 +64,34 @@ function reducer(state, { type, payload }) {
       let index = newSessions.findIndex((item) => item._id === session._id);
       if (index === -1) return newSessions;
       newSessions[index] = session;
-      console.log('zz', newSessions)
       return { ...state, sessions: newSessions };
     }
     case types.DELETE_USER: {
-      const {userId} = payload
-      const users = state.users.slice()
-      const deletedIndex = users.findIndex(user => user._id === userId)
-      if(deletedIndex !== -1) {
-        users.splice(deletedIndex, 1)
+      const { userId } = payload;
+      const users = state.users.slice();
+      const deletedIndex = users.findIndex((user) => user._id === userId);
+      if (deletedIndex !== -1) {
+        users.splice(deletedIndex, 1);
       }
-      return {...state, users: users}
+      return { ...state, users: users };
     }
     case types.DELETE_ROOM: {
-      const {roomId} = payload
-      const rooms = state.rooms.slice()
-      const deletedIndex = rooms.findIndex(room => room._id === roomId)
-      if(deletedIndex !== -1) {
-        rooms.splice(deletedIndex, 1)
+      const { roomId } = payload;
+      const rooms = state.rooms.slice();
+      const deletedIndex = rooms.findIndex((room) => room._id === roomId);
+      if (deletedIndex !== -1) {
+        rooms.splice(deletedIndex, 1);
       }
-      return {...state, rooms: rooms}
+      return { ...state, rooms: rooms };
+    }
+    case types.EDIT_ROOM: {
+      const { room } = payload;
+      let { rooms = [] } = state;
+      let newRooms = rooms.slice();
+      let index = newRooms.findIndex((item) => item._id === room._id);
+      if (index === -1) return newRooms;
+      newRooms[index] = room;
+      return { ...state, rooms: newRooms };
     }
     default:
       console.error(`Unhandled action type: ${type}`);

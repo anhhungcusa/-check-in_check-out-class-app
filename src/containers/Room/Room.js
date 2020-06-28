@@ -3,7 +3,7 @@ import "./Room.css";
 import "antd/dist/antd.css";
 import { Table, Space, Button, message } from "antd";
 import { formatDate } from "../../utils/moment";
-import { AddRoomModal } from "../../components";
+import { AddRoomModal, EditRoomModal } from "../../components";
 import { useDispatch, useStore } from "../../hooks";
 import { RoomService } from "../../services";
 import { actions } from "../../store";
@@ -12,22 +12,29 @@ import { Link } from "react-router-dom";
 function Room() {
   const dispatch = useDispatch();
   const { rooms } = useStore();
-  console.log("rooms", rooms);
+
   useEffect(() => {
     RoomService.getRooms().then((res) => {
       dispatch(actions.setRooms(res.rooms));
     });
   }, [dispatch]);
+  const [room, setRoom] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const open = () => setIsOpen(true);
+  const openEditModal = (record) => {
+    setRoom(record);
+    setIsOpenEditModal(true);
+  };
   const close = () => setIsOpen(false);
+  const closeEditModal = () => setIsOpenEditModal(false);
 
   const handleDeleteRoom = (id) => {
-    RoomService.deleteRoom(id).then(res => {
+    RoomService.deleteRoom(id).then((res) => {
       dispatch(actions.deleteRoomById(id));
-      message.success(res.message)
-    })
-  }
+      message.success(res.message);
+    });
+  };
   const columns = [
     {
       title: "#",
@@ -59,7 +66,10 @@ function Room() {
       render: (text, record) => {
         return (
           <Space size="middle">
-            <Link className="ant-btn link form-button" to={`/rooms/${text}`}>
+            <Link
+              className="ant-btn link form-button"
+              onClick={() => openEditModal(record)}
+            >
               Edit
             </Link>
             <Button
@@ -83,6 +93,12 @@ function Room() {
           </Button>
         </div>
         <AddRoomModal isOpen={isOpen} open={open} close={close} />
+        <EditRoomModal
+          isOpen={isOpenEditModal}
+          open={openEditModal}
+          close={closeEditModal}
+          room={room}
+        />
         <div className="listRoom">
           <Table
             bordered
