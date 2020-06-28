@@ -18,6 +18,7 @@ const deleteSession = _id => ({type: types.DELETE_SESSION, payload: {_id}})
 const setRoles = (roles) => ({type: types.SET_ROLES, payload: {roles}})
 const editSession = session => ({type: types.EDIT_SESSION, payload: {session}})
 const deleteUserById = userId => ({type: types.DELETE_USER, payload: {userId}})
+const deleteRoomById = roomId => ({type: types.DELETE_ROOM, payload: {roomId}})
 
 export default {
     setAuth,
@@ -31,5 +32,6 @@ export default {
     deleteSession,
     setRoles,
     editSession,
-    deleteUserById
+    deleteUserById,
+    deleteRoomById
 }
