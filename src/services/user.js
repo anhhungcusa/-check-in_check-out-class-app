@@ -64,4 +64,23 @@ const getUserById = async (id) => {
   }
 };
 
-export default { getUser, getRoles, deleteUserById, getUserById };
+const editUser = async ({ id, username, fullname }) => {
+  try {
+    const res = await axios({
+      method: "patch",
+      url: route + `/${id}`,
+      data: {
+        username,
+        fullname,
+      },
+    });
+    const { user, message } = res.data;
+    return { user, message, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "Edit User Failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+};
+
+export default { getUser, getRoles, deleteUserById, getUserById, editUser };
