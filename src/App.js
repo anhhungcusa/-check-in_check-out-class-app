@@ -13,6 +13,7 @@ import {
   SessionDetail,
   RegisterAccountPage,
   RoomPage,
+  Profile
 } from "./containers";
 import ManageUser from "./containers/ManageUser/ManageUser";
 import { roles } from "./constants";
@@ -49,6 +50,9 @@ function App() {
             </PrivateRoute>
             <PrivateRoute roles={[roles.admin, roles.teacher]} path="/sessions/:id" layout={MainLayout}>
               <SessionDetail />
+            </PrivateRoute>
+            <PrivateRoute path="/profile/:id" layout={MainLayout}>
+              <Profile />
             </PrivateRoute>
             <PublicRoute layout={FullScreenLayout}>page not found</PublicRoute>
           </Switch>

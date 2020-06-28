@@ -1,0 +1,19 @@
+.wrapper-avatar {
+    align-items: center;
+    display: flex;
+    padding-top: 30px;
+    flex-direction: column;
+}
+.wrapper-icon-avatar {
+    height: 150px;
+    width: 150px;
+    background-color: rgb(204, 204, 204);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.wrapper-avatar .info {
+    padding-top: 30px;
+}

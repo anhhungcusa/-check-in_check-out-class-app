@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
+import "./SessionDetail.css"
 import { Table, Space } from "antd";
 import { formatDate } from "../../utils/moment";
 import { useDispatch, useStore, useRouter } from "../../hooks";
@@ -66,7 +67,7 @@ function SessionDetail() {
     },
   ];
   return (
-    <div>
+    <div className="container detail-session">
       <Table
         bordered
         rowKey={(record) => record._id}
