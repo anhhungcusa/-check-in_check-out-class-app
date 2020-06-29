@@ -27,6 +27,7 @@ function DataProvider({children}) {
         const token = CookieService.getCookie(globals.env.COOKIE_KEY);
         if(!token) return
         const user = jwtDecode(token)
+        // debugger
         if(!user) return
         dispatch(actions.setAuth(token))
         dispatch(actions.setUser(user))
