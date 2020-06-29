@@ -22,4 +22,18 @@ const checking = async (codeId, sessionId, expires) => {
     }
 }
 
-export default {checking, route}
+const getCheckinById = async (id) => {
+    try {
+        const res = await axios({
+            method: "get",
+            url: route + `/${id}`
+        }) 
+        const {checkins, message} = res.data
+        return {checkins, message}
+    } catch (error) {
+        const message = error.response?.data?.message || error.message || 'get checkin failed'
+        throw new Exception(message, messagedStatus.error)
+    }
+}
+
+export default {checking, route, getCheckinById}

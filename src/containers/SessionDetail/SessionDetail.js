@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
-import "./SessionDetail.css"
+import "./SessionDetail.css";
 import { Table, Space } from "antd";
 import { formatDate } from "../../utils/moment";
 import { useDispatch, useStore, useRouter } from "../../hooks";
-import { SessionService, UserService } from "../../services";
+import {
+  UserService,
+  CheckInCheckOutService,
+} from "../../services";
 import { actions } from "../../store";
 
 function SessionDetail() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const [session, setSession] = useState(null);
+  const [checkList, setCheckList] = useState(null);
   const { users } = useStore();
   const { id } = router.params;
 
   useEffect(() => {
-    SessionService.getSession(id).then((doc) => setSession(doc.session));
+    CheckInCheckOutService.getCheckinById(id).then((res) => {
+      console.log('res', res.checkins)
+      setCheckList(res.checkins);
+    });
   }, [dispatch, id]);
+
   useEffect(() => {
     UserService.getUser().then((doc) => {
       dispatch(actions.setUsers(doc.users));
     });
   }, [dispatch]);
+
+  console.log("checkList", checkList);
 
   const getUserNameById = (id) => {
     const result = users && users.find((item) => item._id === id);
@@ -44,7 +53,6 @@ function SessionDetail() {
       render: (text, record) => (
         <Space size="middle">{getUserNameById(text)}</Space>
       ),
-      defaultSortOrder: ["ascend"],
       sorter: (a, b) => a.name.length - b.name.length,
     },
     {
@@ -62,7 +70,7 @@ function SessionDetail() {
       dataIndex: "checkoutAt",
       key: "checkoutAt",
       render: (text, record, index) => (
-        <Space size="middle">{formatDate(text)}</Space>
+        <Space size="middle">{text ? formatDate(text) : 'Null'}</Space>
       ),
     },
   ];
@@ -72,7 +80,7 @@ function SessionDetail() {
         bordered
         rowKey={(record) => record._id}
         columns={columns}
-        dataSource={session && session.participantIds}
+        dataSource={checkList && checkList}
         scroll={{ y: 300 }}
       />
     </div>
