@@ -11,9 +11,12 @@ export const format = (dateString) => {
 
 export const checkTimeSessionValid = (id, sessions) => {
   const result = sessions.find((item) => item._id === id);
-  const timeNow = moment().format();
+  let date = new Date()
+  const timeNow = date.getTime();
   const { startAt, endAt } = result;
-  if (startAt <= timeNow && timeNow <= endAt) {
+  let startTime = new Date(startAt).getTime()
+  let endTime = new Date(endAt).getTime()
+  if (startTime <= timeNow && timeNow <= endTime) {
     return false;
   }
   return true;
