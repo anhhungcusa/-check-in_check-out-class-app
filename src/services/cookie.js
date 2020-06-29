@@ -5,7 +5,6 @@ const setCookie = (key, jwtToken, exp) => {
     let expires = exp || new Date(decoded.exp * 1000)
     expires = expires.toUTCString()
     document.cookie = `${key}=${jwtToken}; expires=${expires}`
-    
 }
 
 const getCookie = key => {

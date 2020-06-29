@@ -83,4 +83,29 @@ const editUser = async ({ id, username, fullname }) => {
   }
 };
 
-export default { getUser, getRoles, deleteUserById, getUserById, editUser };
+const changePassword = async ({ id, password }) => {
+  try {
+    const res = await axios({
+      method: "put",
+      url: route + `/${id}`,
+      data: {
+        password
+      },
+    });
+    const { message } = res.data;
+    return { message, status: messagedStatus.success };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || error.message || "Change Password Failed";
+    throw new Exception(message, messagedStatus.error);
+  }
+};
+
+export default {
+  getUser,
+  getRoles,
+  deleteUserById,
+  getUserById,
+  editUser,
+  changePassword,
+};
