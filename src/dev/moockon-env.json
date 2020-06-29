@@ -1,0 +1,221 @@
+{
+    "source": "mockoon:1.8.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "name": "qr_code-api 111",
+                "endpointPrefix": "api/v1",
+                "latency": 1000,
+                "port": 8080,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "post",
+                        "endpoint": "auth/login",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"message\": \"username or password incorrect\"\n}",
+                                "latency": 0,
+                                "statusCode": "400",
+                                "headers": [],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [],
+                                "label": ""
+                            },
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"message\": \"Login Success!\",\n  \"user\": {\n      \"_id\": \"5ee3c0026fdc094e6c98fd62\",\n      \"fullname\": \"test\",\n      \"createAt\": \"2020-06-12T17:48:50.316+00:00\",\n      \"email\": \"test@gmail.com\",\n      \"roleId\": \"5ee3c0026fdc094e6c98fd63\"\n  },\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWUzYzAwMjZmZGMwOTRlNmM5OGZkNjIiLCJmdWxsbmFtZSI6InRlc3QiLCJyb2xlSWQiOiI1ZWUzYzAwMjZmZGMwOTRlNmM5OGZkNjMifQ.ZGvuOfiSR118DbBlVaoIc70RzP2XuTaJxFWifCEzpbg\"\n}",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "",
+                                "headers": [],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "body",
+                                        "modifier": "username",
+                                        "value": "test",
+                                        "isRegex": false
+                                    },
+                                    {
+                                        "target": "body",
+                                        "modifier": "password",
+                                        "value": "test",
+                                        "isRegex": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "sessions/:id",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n    \"session\": {\n        \"_id\": \"1\",\n        \"name\": \"hello\"\n    }\n}",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": []
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "sessions",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"sessions\": [\n    {\n      \"_id\": \"5eee45cabda69132f8cbfccc\",\n      \"startAt\": \"2020-05-12T17:48:50.316Z\",\n      \"endAt\":\"2020-06-15T17:48:50.316Z\",\n      \"name\": \"99 Dieu Hay Cua Anh Huan\",\n      \"hostId\":\"5ee3c0026fdc094e6c98fd62\",\n      \"roomId\":\"5edd0ee3b9271f28b8324091\",\n      \"createdAt\":\"2020-06-20T17:22:18.244Z\"\n    },\n    {\n      \"_id\":\"5eef2e14f543d7207c8be57b\",\n      \"startAt\": \"2020-06-12T17:48:50.316Z\",\n      \"endAt\": \"2020-06-12T17:48:50.316Z\",\n      \"name\": \"Giao Duc Cong Dan \",\n      \"hostId\":\"5ecb5069e9b4be0a78af0b1e\",\n      \"roomId\":\"5ea6f1564da28e04d9a3b128\",\n      \"createdAt\":\"2020-06-21T04:56:30.431Z\"\n    }\n  ],\n  \"message\": \"Get Sessions Success!\"\n}",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": []
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "create new session",
+                        "method": "post",
+                        "endpoint": "sessions",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n    \"session\": [\n        {\n            \"_id\": \"5ee3c0026fdc094e6c98fd01\",\n            \"startAt\": \"Mon Jun 01 2020 22:02:08 GMT+0700 (Indochina Time)\",\n            \"endAt\": \"Mon Jun 22 2020 22:02:11 GMT+0700 (Indochina Time)\",\n            \"name\": \"Oal Milk Tea\",\n            \"hostId\": \"5ee3c0026fdc094e6c98fd62\",\n            \"roomId\": \"5ea6f1564da28e04d9a3b128\"\n        }    \n    ],\n    \"message\": \"Create Session Success!\"\n}",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": []
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "rooms",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n    \"rooms\": [\n        {\n            \"_id\": \"5edd0ee3b9271f28b8324091\",\n            \"name\": \"B-54\",\n            \"createAt\": \"2020-06-07T15:59:31.928+00:00\"\n        },\n        {\n            \"_id\": \"5ea6f1564da28e04d9a3b128\",\n            \"name\": \"B-46\",\n            \"createAt\": \"2020-06-07T15:59:31.928+00:00\"\n        }\n    ]\n}",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": []
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "users",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n    \"users\": [\n        {\n            \"_id\": \"5ee3c0026fdc094e6c98fd62\",\n            \"fullname\": \"test\",\n            \"createAt\": \"2020-06-12T17:48:50.316+00:00\",\n            \"username\": \"test\",\n            \"roleId\": \"5ee3c0026fdc094e6c98fd63\"\n        },\n        {\n            \"_id\": \"5eef2e14f543d7207c8be57b\",\n            \"fullname\": \"Teacher01\",\n            \"createAt\": \"2020-06-12T17:48:50.316+00:00\",\n            \"username\": \"Boong Bang\",\n            \"roleId\": \"5eef0ce959624d3678898cb0\"\n        }\n    ],\n    \"message\": \"Get users success!\"\n}",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": []
+                            }
+                        ],
+                        "enabled": true
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Origin",
+                        "value": "*"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Methods",
+                        "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Headers",
+                        "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+                    }
+                ],
+                "lastMigration": 10,
+                "proxyReqHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ],
+                "proxyResHeaders": [
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    ]
+}
