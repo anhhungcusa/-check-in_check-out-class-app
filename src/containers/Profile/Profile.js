@@ -98,7 +98,7 @@ function Profile() {
       <div className="container">
         <div className="wrapper-avatar">
           <div className="wrapper-icon-avatar">
-            <UserOutlined style={{ fontSize: "100px" }} />
+            <UserOutlined style={{ fontSize: "100px", color: '#fff' }} />
           </div>
           <div className="btn-group">
             <Button className="btn-item" onClick={() => onSetDisable()}>

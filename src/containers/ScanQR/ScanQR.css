@@ -9,8 +9,8 @@
     padding-top: 0 !important;
 } 
 .scan-qr-page > .scanner  div {
-    box-shadow: #ffffff50 0px 0px 0px 5px inset !important;
-
+    box-shadow: none !important;
+    border: none !important;
 }
 .scan-qr-page .go-back {
     color: #ffffff50;

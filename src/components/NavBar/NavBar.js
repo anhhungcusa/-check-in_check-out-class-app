@@ -21,10 +21,10 @@ const NavBar = () => {
 	return (
 		<div className="top-nav">
 			<Menu selectedKeys={[ currentItem ]} mode="horizontal" theme="dark">
-                <Menu.Item key="/" className="top-nav__item" icon={<HomeOutlined />}>
-                    <Link className="nav-link" to="/" />
-                    Home
-                </Menu.Item>
+				<Menu.Item key="/" className="top-nav__item" icon={<HomeOutlined />}>
+					<Link className="nav-link" to="/" />
+					Home
+				</Menu.Item>
 				{requireRoles([ roles.admin ]) && (
 					<Menu.Item key="/users" className="top-nav__item" icon={<UserOutlined />}>
 						<Link className="nav-link" to="/users" />
@@ -37,10 +37,12 @@ const NavBar = () => {
 						Manage Room
 					</Menu.Item>
 				)}
-				<Menu.Item key="/scan" className="top-nav__item" icon={<ScanOutlined />}>
-					<Link className="nav-link" to="/scan" />
-					Scan
-				</Menu.Item>
+				{requireRoles([ roles.student ]) && (
+					<Menu.Item key="/scan" className="top-nav__item" icon={<ScanOutlined />}>
+						<Link className="nav-link" to="/scan" />
+						Scan
+					</Menu.Item>
+				)}
 			</Menu>
 		</div>
 	);
